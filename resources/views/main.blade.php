@@ -115,7 +115,7 @@
                 <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
                         <a href="{{ url('/inventory') }}">
-                            <i class="bi bi-circle"></i><span>Iventory</span>
+                            <i class="bi bi-circle"></i><span>Inventory</span>
                         </a>
                     </li>
                 </ul>

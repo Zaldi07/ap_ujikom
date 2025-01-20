@@ -84,32 +84,32 @@ class PenggunaController extends Controller
             return redirect('pengguna')->with('status', 'Error: ' . $ex->getMessage());
         }
     }
-    public function signup(Request $request)
-    {
-        // Validasi input
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email|max:255',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:Manager,Staff       ',
-        ]);
+    // public function signup(Request $request)
+    // {
+    //     // Validasi input
+    //     $validatedData = $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|email|unique:users,email|max:255',
+    //         'password' => 'required|string|min:8|confirmed',
+    //         'role' => 'required|in:Manager,Staff       ',
+    //     ]);
 
-        try {
-            // Insert data ke database
-            DB::table('users')->insert([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-                'role' => $validatedData['role'],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+    //     try {
+    //         // Insert data ke database
+    //         DB::table('users')->insert([
+    //             'name' => $validatedData['name'],
+    //             'email' => $validatedData['email'],
+    //             'password' => Hash::make($validatedData['password']),
+    //             'role' => $validatedData['role'],
+    //             'created_at' => now(),
+    //             'updated_at' => now(),
+    //         ]);
 
-            return redirect('home')->with('status', 'Pengguna berhasil ditambah.');
-        } catch (\Exception $ex) {
-            return redirect()->back()->with('status', 'Terjadi kesalahan: ' . $ex->getMessage())->withInput();
-        }
-    }
+    //         return redirect('home')->with('status', 'Pengguna berhasil ditambah.');
+    //     } catch (\Exception $ex) {
+    //         return redirect()->back()->with('status', 'Terjadi kesalahan: ' . $ex->getMessage())->withInput();
+    //     }
+    // }
 
 
     /**

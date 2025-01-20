@@ -36,7 +36,7 @@
                 <div class="card px-5 py-4">
                     <div class="card-body">
                         <h2 class="card-title text-center">Sign Up</h2>
-                        <form action="{{ route('pengguna.signup') }}" method="POST">
+                        <form action="{{ route('auth.signup') }}" method="POST">
                             @csrf
                             <!-- Input Name -->
                             <div class="forms-inputs mb-4">
@@ -100,7 +100,7 @@
                         <div class="text-center">
                             <small>
                                 Already have an account?
-                                <a href="{{ route('pengguna.login') }}" class="text-primary">Login here</a>
+                                <a href="{{ route('auth.login') }}" class="text-primary">Login here</a>
                             </small>
                         </div>
                     </div>

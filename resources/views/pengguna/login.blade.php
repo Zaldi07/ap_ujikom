@@ -45,7 +45,7 @@
                             </div>
                         @else
                             <div class="form-data">
-                                <form action="{{ route('pengguna.login') }}" method="POST">
+                                <form action="{{ route('auth.login') }}" method="POST">
                                     @csrf
                                     <!-- Input Email -->
                                     <div class="forms-inputs mb-4">
@@ -84,7 +84,7 @@
                     <div class="text-center">
                         <small>
                             Don't have an account?
-                            <a href="{{ route('pengguna.signUpForm') }}" class="text-primary">Sign up here</a>
+                            <a href="{{ route('auth.signUpForm') }}" class="text-primary">Sign up here</a>
                         </small>
                     </div>
                 </div>

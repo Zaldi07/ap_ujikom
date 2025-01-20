@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\inventory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JenisController;
@@ -41,11 +42,11 @@ Route::put('pengguna/{user_id}', [PenggunaController::class, 'update'])->name('p
 Route::delete('pengguna/{user_id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
 
 #tambahkan route berikut
-Route::get('/login', [PenggunaController::class, 'loginForm'])->name('pengguna.loginForm');
-Route::post('/login', [PenggunaController::class, 'login'])->name('pengguna.login');
-Route::post('/', [PenggunaController::class, 'logout'])->name('pengguna.logout');
-Route::post('/signup', [PenggunaController::class, 'signup'])->name('pengguna.signup');
-Route::get('/signup', [PenggunaController::class, 'signUpForm'])->name('pengguna.signUpForm');
+Route::get('/login', [AuthController::class, 'loginForm'])->name('auth.loginForm');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/', [AuthController::class, 'logout'])->name('auth.logout');
+Route::post('/signup', [AuthController::class, 'signup'])->name('auth.signup');
+Route::get('/signup', [AuthController::class, 'signUpForm'])->name('auth.signUpForm');
 // //Data inventory
 Route::get('inventory', [inventory::class, 'index'])->name('inventory.index');
 Route::get('inventory/create', [inventory::class, 'create'])->name('inventory.create');
