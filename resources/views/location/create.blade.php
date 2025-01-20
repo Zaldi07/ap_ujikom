@@ -1,88 +1,89 @@
 @extends('main')
-@section('title', 'Inventory')
+@section('title', 'Data Location')
 @section('breadcrumbs')
     <main id="main" class="main">
         <div class="pagetitle">
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./jenis">Master Data</a></li>
-                    <li class="breadcrumb-item active">Inventory</li>
+                    <li class="breadcrumb-item"><a href="./location">Master Data</a></li>
+                    <li class="breadcrumb-item active">Data Location</li>
                 </ol>
             </nav>
         </div>
-
         <section class="section dashboard">
-            <div class="row">
-                <div class="col-12">
+            <div class="col-12">
+                <div class="row">
                     <div class="card top-selling overflow-auto">
                         <div class="content mt-3">
                             <div class="animated fadeIn">
-                                @if (session('status'))
-                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                        <strong>Proses...! </strong> {{ session('status') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
+                                <div class="card-header">
+                                    <table width="100%" class="fa fa-text-height" aria-hidden="true" border="0"
+                                        cellpadding="0" cellspacing="0" class="fa fa-align-center">
+                                        <tr>
+                                            <td>
+                                                <h5 class="card-title">Tambah Data Lokasi</span></h5>
+                                            </td>
+                                            <td>
+                                                <div align="right"><a href="{{ url('./location') }}"
+                                                        class="btn btn-success btn-sm">
+                                                        <span class="bi bi-arrow-left-circle-fill" style="font-size:16px">
+                                                            Back</span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
 
-                                <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
-                                    <h5 class="card-title">Data Inventory</h5>
-                                    <a href="{{ url('inventory/create') }}" class="btn btn-success btn-sm">
-                                        <span class="bi bi-plus-circle" style="font-size:16px"> New</span>
-                                    </a>
+                                    <div class="col-12">
+                                        <div class="card recent-sales overflow-auto">
+                                            <div class="card-body">
+
+                                                <form action="{{ url('location') }}" method="post"
+                                                    enctype="multipart/form-data">
+                                                    {{ csrf_field() }}
+                                                    <p>
+                                                    <div class="row mb-3">
+                                                        <label for="name" class="col-sm-2 col-form-label">Id
+                                                            Lokasi</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text"
+                                                                class="form-control @error('location_id') is-invalid @enderror"
+                                                                value="{{ old('location_id') }}" name="location_id" required
+                                                                autofocus>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mb-3">
+                                                        <label for="name" class="col-sm-2 col-form-label">Name </label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text"
+                                                                class="form-control @error('Nama lokasi') is-invalid @enderror"
+                                                                value="{{ old('lokasi') }}" name="name" required
+                                                                autofocus>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="row mb-3">
+                                                        <label for="name"
+                                                            class="col-sm-2 col-form-label">Deskripsi</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text"
+                                                                class="form-control @error('description') is-invalid @enderror"
+                                                                value="{{ old('description') }}" name="description" required
+                                                                autofocus>
+                                                        </div>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-success"
+                                                        style="font-size:16px"><span class="bi bi-save2 green-color"> Save
+                                                        </span></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped datatable">
-                                            <thead>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>ID Inventory</th>
-                                                    <th>Product Name</th>
-                                                    <th>Description</th>
-                                                    <th>Quantity Good</th>
-                                                    <th>Expired</th>
-                                                    <th>Status</th>
-                                                    <th>Unit</th>
-                                                    <th>Ubah</th>
-                                                    <th>Hapus</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($inventory as $item)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $item->inventory_id }}</td>
-                                                        <td>{{ $item->product_name }}</td>
-                                                        <td>{{ $item->description }}</td>
-                                                        <td>{{ $item->quantity_good }}</td>
-                                                        <td>{{ $item->expired }}</td>
-                                                        <td>{{ $item->status }}</td>
-                                                        <td>{{ $item->unit }}</td>
-                                                        <td>
-                                                            <a href="{{ url('inventory/' . $item->inventory_id . '/edit') }}"
-                                                                class="btn btn-success btn-sm">
-                                                                <span class="bi bi-pencil-square"></span>
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <form action="{{ url('inventory/' . $item->inventory_id) }}"
-                                                                method="post" class="d-inline"
-                                                                onsubmit="return confirm('Yakin Hapus Data?')">
-                                                                @method('delete')
-                                                                @csrf
-                                                                <button class="btn btn-danger btn-sm">
-                                                                    <span class="bi bi-trash"></span>
-                                                                </button>
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

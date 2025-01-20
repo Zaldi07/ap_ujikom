@@ -40,7 +40,12 @@ Route::get('pengguna/{user_id}/edit', [PenggunaController::class, 'edit'])->name
 Route::put('pengguna/{user_id}', [PenggunaController::class, 'update'])->name('pengguna.update');
 Route::delete('pengguna/{user_id}', [PenggunaController::class, 'destroy'])->name('pengguna.destroy');
 
-
+#tambahkan route berikut
+Route::get('/login', [PenggunaController::class, 'loginForm'])->name('pengguna.loginForm');
+Route::post('/login', [PenggunaController::class, 'login'])->name('pengguna.login');
+Route::post('/', [PenggunaController::class, 'logout'])->name('pengguna.logout');
+Route::post('/signup', [PenggunaController::class, 'signup'])->name('pengguna.signup');
+Route::get('/signup', [PenggunaController::class, 'signUpForm'])->name('pengguna.signUpForm');
 // //Data inventory
 Route::get('inventory', [inventory::class, 'index'])->name('inventory.index');
 Route::get('inventory/create', [inventory::class, 'create'])->name('inventory.create');
