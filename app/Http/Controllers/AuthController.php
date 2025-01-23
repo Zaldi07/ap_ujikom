@@ -12,12 +12,12 @@ class AuthController extends Controller
     // Fungsi untuk menampilkan form login
     public function loginForm()
     {
-        return view('pengguna/login'); // Tampilkan form login
+        return view('auth/login'); // Tampilkan form login
     }
     // Fungsi untuk menampilakan form signup
     public function signUpForm()
     {
-        return view('pengguna/signup'); // Tampilkan form signup
+        return view('auth/signup'); // Tampilkan form signup
     }
     // Fungsi untuk pengguna login
     public function login(Request $request)
